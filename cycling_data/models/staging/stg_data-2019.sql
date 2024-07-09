@@ -18,8 +18,10 @@ select
     cast(UnqID as string) as UnqID,
     
     -- timestamps
-    cast(Date as date) as Date,
-    cast(Time as timestamp) as Time,
+    -- cast(Date as date) as Date,
+    PARSE_DATE('%d/%m/%Y', Date) as Date,
+    -- cast(Time as timestamp) as Time,
+    PARSE_TIMESTAMP('%H:%M:%S', Time) as Time,
     
     -- trip info
     cast(Weather as string) as Weather,
