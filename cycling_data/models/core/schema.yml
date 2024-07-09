@@ -1,0 +1,107 @@
+version: 2
+
+models:
+  - name: mo_locations
+    description: "A reference table of all currently defined count locations, including their unique ID, coordinates (in UK Grid eastings and northings as well as latitude and longitude), information about their location (site description, borough, area of London, and road type) as well as other useful information for the user (old location ID and a flag to show whether that location is part of the strategic panel of cycle counts which are used to calculate TfL’s cycling volume estimates)."
+    columns:
+      - name: site_id
+        data_type: string
+        description: "Unique identifier for the monitoring location."
+      - name: location_description
+        data_type: string
+        description: "Description of the monitoring location."
+      - name: borough
+        data_type: string
+        description: "Borough where the monitoring location is situated."
+      - name: functional_area_for_monitoring
+        data_type: string
+        description: "Functional area for monitoring within London."
+      - name: road_type
+        data_type: string
+        description: "Type of road where the monitoring is conducted."
+      - name: old_site_id_legacy
+        data_type: string
+        description: "Legacy ID for the monitoring location."
+      - name: easting_uk_grid
+        data_type: float64
+        description: "Easting coordinate of the monitoring location in the UK Grid."
+      - name: northing_uk_grid
+        data_type: float64
+        description: "Northing coordinate of the monitoring location in the UK Grid."
+      - name: latitude
+        data_type: float64
+        description: "Latitude coordinate of the monitoring location."
+      - name: longitude
+        data_type: float64
+        description: "Longitude coordinate of the monitoring location."
+
+  - name: fact_cycling
+    description: "Fact table containing cycling data including unique identifiers, timestamps, weather information, trip details, and location details linked to monitoring locations."
+    columns:
+      - name: cyclingid
+        data_type: string
+        description: "Surrogate key generated from UnqID, Date, and Time."
+      - name: year
+        data_type: string
+        description: "Year of the data in the format YYYY QQ [season] (Mmm-Mmm), indicating the wave (quarter or season) that the counts represent."
+      - name: unqid
+        data_type: string
+        description: "Unique ID that identifies the count location. Format: ML0000."
+      - name: date
+        data_type: date
+        description: "Date when the counts took place in DD-MM-YYYY format."
+      - name: time
+        data_type: timestamp
+        description: "Start time of the quarter hour represented by the count in HH:MM:SS format."
+      - name: weather
+        data_type: string
+        description: "Description of the weather at the time and location of the count."
+      - name: day
+        data_type: string
+        description: "Indicates whether the count was done on a weekday or weekend."
+      - name: round
+        data_type: string
+        description: "Character indicating the iteration (‘round’) of the given count location-wave combination."
+      - name: dir
+        data_type: string
+        description: "Direction of travel of the flows counted on the path given by the ‘Path’ field."
+      - name: path
+        data_type: string
+        description: "Indicates the part of the road where the counts took place."
+      - name: mode
+        data_type: string
+        description: "Indicates the road user class being counted."
+      - name: count
+        data_type: int64
+        description: "Total flow corresponding to the above parameters."
+      - name: site_id
+        data_type: string
+        description: "Unique identifier for the monitoring location, linking to the mo_locations table."
+      - name: location_description
+        data_type: string
+        description: "Description of the monitoring location, linking to the mo_locations table."
+      - name: borough
+        data_type: string
+        description: "Borough where the monitoring location is situated, linking to the mo_locations table."
+      - name: functional_area_for_monitoring
+        data_type: string
+        description: "Functional area for monitoring within London, linking to the mo_locations table."
+      - name: road_type
+        data_type: string
+        description: "Type of road where the monitoring is conducted, linking to the mo_locations table."
+      - name: old_site_id_legacy
+        data_type: string
+        description: "Legacy ID for the monitoring location, linking to the mo_locations table."
+      - name: easting_uk_grid
+        data_type: float64
+        description: "Easting coordinate of the monitoring location in the UK Grid, linking to the mo_locations table."
+      - name: northing_uk_grid
+        data_type: float64
+        description: "Northing coordinate of the monitoring location in the UK Grid, linking to the mo_locations table."
+      - name: latitude
+        data_type: float64
+        description: "Latitude coordinate of the monitoring location, linking to the mo_locations table."
+      - name: longitude
+        data_type: float64
+        description: "Longitude coordinate of the monitoring location, linking to the mo_locations table."
+
