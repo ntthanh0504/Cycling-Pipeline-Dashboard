@@ -1,4 +1,4 @@
-Site ID,Location description,Borough,Functional area for monitoring,Road type,Is it on the strategic CIO panel?,Old site ID (legacy),Easting (UK Grid),Northing (UK Grid),Latitude,Longitude
+Site_ID,Location_description,Borough,Functional_area_for_monitoring,Road_type,CIO_panel,Old_site_ID_(legacy),Easting_(UK Grid),Northing_(UK Grid),Latitude,Longitude
 ML0001,Millbank (south of Thorney Street),Westminster,01 Central,01 A Road,1,CENCY001,530251.49,178742.45,51.492628,-0.12520362
 ML0002,Bishopsgate,City of London,01 Central,01 A Road,2,CENCY002,533362.68,181824.45,51.519599,-0.07925389
 ML0003,Southwark Bridge,Southwark,01 Central,01 A Road,3,CENCY003,532334.06,180520.37,51.508123,-0.094550618
