@@ -11,3 +11,229 @@ sources:
       - name: data-2020
       - name: data-2021
       - name: data-2022
+
+models:
+  - name: stg_data-2018
+    description: ""
+    columns:
+      - name: cyclingid
+        data_type: string
+        description: "Surrogate key generated from UnqID, Date, and Time."
+      - name: year
+        data_type: string
+        description: "YYYY QQ [season] (Mmm-Mmm). Indicates the wave (quarter or season) that the counts represent."
+      - name: unqid
+        data_type: string
+        description: "Unique ID that identifies the count location. Format: ML0000."
+        tests:
+          - relationships:
+              field: Site_ID
+              to: ref('monitoring_locations')
+              severity: warn
+      - name: date
+        data_type: date
+        description: "DD-MM-YYYY. Date when the counts took place."
+      - name: time
+        data_type: timestamp
+        description: "HH:MM:SS. Start time of the quarter hour represented by the count."
+      - name: weather
+        data_type: string
+        description: "Description of the weather at the time and location of the count."
+      - name: day
+        data_type: string
+        description: "Indicates whether the count was done on a weekday or weekend."
+      - name: round
+        data_type: string
+        description: "Character indicating the iteration (‘round’) of the given count location-wave combination."
+      - name: dir
+        data_type: string
+        description: "Direction of travel of the flows counted on the path given by the ‘Path’ field."
+      - name: path
+        data_type: string
+        description: "Indicates the part of the road where the counts took place."
+      - name: mode
+        data_type: string
+        description: "Indicates the road user class being counted."
+      - name: count
+        data_type: int64
+        description: "Total flow corresponding to the above parameters."
+
+  - name: stg_data-2019
+    description: ""
+    columns:
+      - name: cyclingid
+        data_type: string
+        description: "Surrogate key generated from UnqID, Date, and Time."
+      - name: year
+        data_type: string
+        description: "YYYY QQ [season] (Mmm-Mmm). Indicates the wave (quarter or season) that the counts represent."
+      - name: unqid
+        data_type: string
+        description: "Unique ID that identifies the count location. Format: ML0000."
+        tests:
+          - relationships:
+              field: Site_ID
+              to: ref('monitoring_locations')
+              severity: warn
+      - name: date
+        data_type: date
+        description: "DD-MM-YYYY. Date when the counts took place."
+      - name: time
+        data_type: timestamp
+        description: "HH:MM:SS. Start time of the quarter hour represented by the count."
+      - name: weather
+        data_type: string
+        description: "Description of the weather at the time and location of the count."
+      - name: day
+        data_type: string
+        description: "Indicates whether the count was done on a weekday or weekend."
+      - name: round
+        data_type: string
+        description: "Character indicating the iteration (‘round’) of the given count location-wave combination."
+      - name: dir
+        data_type: string
+        description: "Direction of travel of the flows counted on the path given by the ‘Path’ field."
+      - name: path
+        data_type: string
+        description: "Indicates the part of the road where the counts took place."
+      - name: mode
+        data_type: string
+        description: "Indicates the road user class being counted."
+      - name: count
+        data_type: int64
+        description: "Total flow corresponding to the above parameters."
+
+  - name: stg_data-2020
+    description: ""
+    columns:
+      - name: cyclingid
+        data_type: string
+        description: "Surrogate key generated from UnqID, Date, and Time."
+      - name: year
+        data_type: string
+        description: "YYYY QQ [season] (Mmm-Mmm). Indicates the wave (quarter or season) that the counts represent."
+      - name: unqid
+        data_type: string
+        description: "Unique ID that identifies the count location. Format: ML0000."
+        tests:
+          - relationships:
+              field: Site_ID
+              to: ref('monitoring_locations')
+              severity: warn
+      - name: date
+        data_type: date
+        description: "DD-MM-YYYY. Date when the counts took place."
+      - name: time
+        data_type: timestamp
+        description: "HH:MM:SS. Start time of the quarter hour represented by the count."
+      - name: weather
+        data_type: string
+        description: "Description of the weather at the time and location of the count."
+      - name: day
+        data_type: string
+        description: "Indicates whether the count was done on a weekday or weekend."
+      - name: round
+        data_type: string
+        description: "Character indicating the iteration (‘round’) of the given count location-wave combination."
+      - name: dir
+        data_type: string
+        description: "Direction of travel of the flows counted on the path given by the ‘Path’ field."
+      - name: path
+        data_type: string
+        description: "Indicates the part of the road where the counts took place."
+      - name: mode
+        data_type: string
+        description: "Indicates the road user class being counted."
+      - name: count
+        data_type: int64
+        description: "Total flow corresponding to the above parameters."
+
+  - name: stg_data-2021
+    description: ""
+    columns:
+      - name: cyclingid
+        data_type: string
+        description: "Surrogate key generated from UnqID, Date, and Time."
+      - name: year
+        data_type: string
+        description: "YYYY QQ [season] (Mmm-Mmm). Indicates the wave (quarter or season) that the counts represent."
+      - name: unqid
+        data_type: string
+        description: "Unique ID that identifies the count location. Format: ML0000."
+        tests:
+          - relationships:
+              field: Site_ID
+              to: ref('monitoring_locations')
+              severity: warn
+      - name: date
+        data_type: date
+        description: "DD-MM-YYYY. Date when the counts took place."
+      - name: time
+        data_type: timestamp
+        description: "HH:MM:SS. Start time of the quarter hour represented by the count."
+      - name: weather
+        data_type: string
+        description: "Description of the weather at the time and location of the count."
+      - name: day
+        data_type: string
+        description: "Indicates whether the count was done on a weekday or weekend."
+      - name: round
+        data_type: string
+        description: "Character indicating the iteration (‘round’) of the given count location-wave combination."
+      - name: dir
+        data_type: string
+        description: "Direction of travel of the flows counted on the path given by the ‘Path’ field."
+      - name: path
+        data_type: string
+        description: "Indicates the part of the road where the counts took place."
+      - name: mode
+        data_type: string
+        description: "Indicates the road user class being counted."
+      - name: count
+        data_type: int64
+        description: "Total flow corresponding to the above parameters."
+
+  - name: stg_data-2022
+    description: ""
+    columns:
+      - name: cyclingid
+        data_type: string
+        description: "Surrogate key generated from UnqID, Date, and Time."
+      - name: year
+        data_type: string
+        description: "YYYY QQ [season] (Mmm-Mmm). Indicates the wave (quarter or season) that the counts represent."
+      - name: unqid
+        data_type: string
+        description: "Unique ID that identifies the count location. Format: ML0000."
+        tests:
+          - relationships:
+              field: Site_ID
+              to: ref('monitoring_locations')
+              severity: warn
+      - name: date
+        data_type: date
+        description: "DD-MM-YYYY. Date when the counts took place."
+      - name: time
+        data_type: timestamp
+        description: "HH:MM:SS. Start time of the quarter hour represented by the count."
+      - name: weather
+        data_type: string
+        description: "Description of the weather at the time and location of the count."
+      - name: day
+        data_type: string
+        description: "Indicates whether the count was done on a weekday or weekend."
+      - name: round
+        data_type: string
+        description: "Character indicating the iteration (‘round’) of the given count location-wave combination."
+      - name: dir
+        data_type: string
+        description: "Direction of travel of the flows counted on the path given by the ‘Path’ field."
+      - name: path
+        data_type: string
+        description: "Indicates the part of the road where the counts took place."
+      - name: mode
+        data_type: string
+        description: "Indicates the road user class being counted."
+      - name: count
+        data_type: int64
+        description: "Total flow corresponding to the above parameters."
