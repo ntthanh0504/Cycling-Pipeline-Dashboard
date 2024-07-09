@@ -1,0 +1,20 @@
+services:
+  terraform:
+    image: hashicorp/terraform:latest  # Using the latest version of Terraform
+    container_name: terraform
+    volumes:
+      - type: bind
+        source: ./data/terraform  # Ensure this path exists on your host and Docker has access to it
+        target: /data
+      - type: bind
+        source: /home/thanh_linux/.google/credentials/cycling-pipeline-dashboard-33b9b532c7a9.json
+        target: /root/.google/credentials/cycling-pipeline-dashboard-33b9b532c7a9.json
+    working_dir: /data
+    entrypoint: ["sh", "-c"]
+    command: ["terraform init && terraform apply -auto-approve"]
+    networks:
+      - terraform-network
+
+networks:
+  terraform-network:
+    driver: bridge

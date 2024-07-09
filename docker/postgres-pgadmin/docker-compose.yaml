@@ -1,0 +1,31 @@
+services:
+  pgdatabase:
+    image: postgres:latest
+    container_name: pgdatabase
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: cycling_data
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres/cycling_data:/var/lib/postgresql/data
+    networks:
+      - airflow-kafka
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - ./data/pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - airflow-kafka
+  
+networks:
+  airflow-kafka:
+    external: true
