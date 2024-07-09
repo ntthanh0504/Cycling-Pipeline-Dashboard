@@ -104,4 +104,45 @@ models:
       - name: longitude
         data_type: float64
         description: "Longitude coordinate of the monitoring location, linking to the mo_locations table."
+  - name: strategic_counts_only
+    description: "Table containing data for locations that are part of the strategic panel of cycle counts used to calculate TfL’s cycling volume estimates."
+    columns:
+      - name: borough
+        data_type: string
+        description: "The administrative division in which the cycling count location is situated."
+        
+      - name: road_type
+        data_type: string
+        description: "The type of road at the cycling count location, such as major road, minor road, etc."
+        
+      - name: total_count
+        data_type: int64
+        description: "The total number of cyclists counted at the location during the specified period."
+
+  - name: weekends_only
+    description: "Table containing data specifically from weekends to analyze cycling patterns during weekends."
+    columns:
+      - name: day
+        data_type: string
+        description: "The day of the week when the cycling count was recorded, specifically Saturday or Sunday."
+        
+      - name: total_count
+        data_type: int64
+        description: "The total number of cyclists counted on weekends."
+
+  - name: quarterly_counts_only
+    description: "Table containing data from the now discontinued program of quarterly cycle counts in central London."
+    columns:
+      - name: year
+        data_type: string
+        description: "The year during which the cycling count was recorded."
+        
+      - name: quarter
+        data_type: string
+        description: "The quarter of the year during which the cycling count was recorded (e.g., Q1, Q2, Q3, Q4)."
+        
+      - name: total_count
+        data_type: int64
+        description: "The total number of cyclists counted during the specified quarter."
+
 
