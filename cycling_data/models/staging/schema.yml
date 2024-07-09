@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: staging
+    database: cycling-pipeline-dashboard
+    schema: cycling_data
+
+    tables:
+      - name: data-2018
+      - name: data-2019
+      - name: data-2020
+      - name: data-2021
+      - name: data-2022
