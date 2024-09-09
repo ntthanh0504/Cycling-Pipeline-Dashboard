@@ -1,31 +1,39 @@
+version: "3"
+
 services:
-  pgdatabase:
+  postgres:
     image: postgres:latest
     container_name: pgdatabase
+    restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: cycling_data
-    ports:
-      - "5432:5432"
+      POSTGRES_PASSWORD: ${POSTGRES_USER}
+      POSTGRES_USER: ${POSTGRES_PASSWORD}
     volumes:
-      - ./data/postgres/cycling_data:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      - airflow-kafka
+      - data-flow-net
 
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-    volumes:
-      - ./data/pgadmin:/var/lib/pgadmin
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_LISTEN_PORT: ${PGADMIN_LISTEN_PORT}
     ports:
-      - "5050:80"
+      - 15432:80
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres
     networks:
-      - airflow-kafka
-  
+      - data-flow-net
+
+volumes:
+  postgres:
+  pgadmin:
+
 networks:
-  airflow-kafka:
+  data-flow-net:
     external: true

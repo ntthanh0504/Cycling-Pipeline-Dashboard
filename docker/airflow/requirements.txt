@@ -1,0 +1,9 @@
+pandas==1.5.3 
+apache-airflow==2.9.3
+kafka-python==2.0.2 
+unidecode==1.2.0 
+confluent-kafka==1.9.2 
+sqlalchemy==1.4.47 
+psycopg2-binary==2.9.6 
+pyspark==3.4.1 
+findspark==2.0.1
