@@ -1,6 +1,6 @@
 variable "credentials" {
   description = "Path to the Google Cloud credentials file."
-  default     = "/home/viann/.google/credentials/cycling-pipeline-124a103cde20.json"
+  default     = "/home/viann/.google/credentials/your_credentials_key.json"
 }
 
 variable "project" {
