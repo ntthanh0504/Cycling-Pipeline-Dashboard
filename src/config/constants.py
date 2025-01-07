@@ -12,9 +12,16 @@ class PostgresConfig:
         "driver": "org.postgresql.Driver"
     }
 
+class MongoDBConfig:
+    MONGO_URI = "mongodb://mongodb:27017"
+    DATABASE = "cycling_data"
+    COLLECTION = "records"
+    USER = 'root'
+    PASSWORD = '123'
 
 class CyclingDataAPI:
     """Cycling data API details."""
+    URL = "https://cycling.data.tfl.gov.uk/"
     ROOT_URL = "https://cycling.data.tfl.gov.uk/ActiveTravelCountsProgramme"
     YEARS = ["2018", "2019", "2020", "2021", "2022"]
     QUARTERS = ["Q1 (Jan-Mar)", "Q2 spring (Apr-Jun)",
@@ -23,6 +30,8 @@ class CyclingDataAPI:
     FILE_TYPE = ".csv"
     DB_FIELDS = ["Year", "UnqID", "Date", "Weather", "Time",
                  "Day", "Round", "Dir", "Path", "Mode", "Count"]
+    # DRIVER_PATH = "D:\\Program\\miniconda3\\envs\\DE\\Lib\\site-packages\\seleniumbase\\drivers\\chromedriver.exe"
+    DRIVER_PATH = "http://127.0.0.1:4444/wd/hub"
 
 
 class KafkaConfig:
@@ -42,7 +51,14 @@ class KafkaConfig:
     ADMIN_PROPERTIES = {
         'bootstrap.servers': "kafka1:9092,kafka2:9093,kafka3:9094"
     }
-    TOPIC = ["Central", "Inner", "Outer", "Cycleways"]
+    CONSUMER_PROPERTIES = {
+        'bootstrap.servers': "kafka1:9092,kafka2:9093,kafka3:9094",
+        'group.id': 'cycling-consumer-group',
+        'auto.offset.reset': 'earliest',
+        'enable.auto.commit': False
+    }
+    TOPIC = ["Central", "Inner", ]# "Outer", "Cycleways"]
+    DLQ_TOPIC = "cycling_dlq"
     NUM_PARTITIONS = 8
     REPLICATION_FACTOR = 3
 

@@ -1,0 +1,99 @@
+---
+version: "3"
+
+volumes:
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+
+networks:
+  data-flow-net:
+    external: true
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus-data:/prometheus
+    restart: unless-stopped
+    networks:
+      - data-flow-net
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
+      - "--web.external-url=${SERVER_PROMETHEUS_ADDRESS:-http://localhost:9090}"
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana:rw
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    environment:
+      - "GF_SMTP_ENABLED=true"
+      - "GF_SMTP_HOST=smtp.gmail.com:587"
+      - "GF_SMTP_USER=user1@gmail.com"
+      - "GF_SMTP_PASSWORD=mysamplePassword"
+      - "GF_SMTP_FROM_ADDRESS=user1@gmail.com"
+      # - 'GF_SERVER_DOMAIN=grafana.my.domain'
+      # - 'GF_SERVER_ROOT_URL=grafana.my.domain'
+    restart: unless-stopped
+    networks:
+      - data-flow-net
+
+  alertmanager:
+    container_name: alertmanager
+    image: prom/alertmanager:v0.25.0
+    ports:
+      - 9093:9093
+    volumes:
+      - ./alertmanager/config.yaml:/etc/alertmanager/config.yaml
+    command:
+      - "--config.file=/etc/alertmanager/config.yaml"
+      - "--storage.path=/alertmanager"
+      - "--web.external-url=${SERVER_ALERTMANAGER_ADDRESS:-http://localhost:9093}"
+    restart: always
+    networks:
+      - data-flow-net
+
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    command:
+      - "--path.rootfs=/host"
+    pid: host
+    restart: unless-stopped
+    volumes:
+      # - '/:/host:ro,rslave'
+      - "/proc:/host/proc:ro"
+      - "/sys:/host/sys:ro"
+      - "/dev:/host/dev:ro"
+    networks:
+      - data-flow-net
+
+  cadvisor:
+    image: google/cadvisor:latest
+    container_name: cadvisor
+    # ports:
+    #   - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    devices:
+      - /dev/kmsg
+    networks:
+      - data-flow-net

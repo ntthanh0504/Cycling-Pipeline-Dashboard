@@ -3,60 +3,6 @@
 2014 Q3 (Jul-Sep)-Central.csv
 2014 Q4 autumn (Oct-Dec)-Central.csv
 2014 Q4 autumn (Oct-Dec)-Cycleways.csv
-2015 Q1 (Jan-Mar)-Central.csv
-2015 Q2 spring (Apr-Jun)-Central.csv
-2015 Q2 spring (Apr-Jun)-Cycleways.csv
-2015 Q2 spring (Apr-Jun)-Inner.csv
-2015 Q2 spring (Apr-Jun)-Outer.csv
-2015 Q3 (Jul-Sep)-Central.csv
-2015 Q4 autumn (Oct-Dec)-Central.csv
-2015 Q4 autumn (Oct-Dec)-Cycleways.csv
-2016 Q1 (Jan-Mar)-Central.csv
-2016 Q2 spring (Apr-Jun)-Central.csv
-2016 Q2 spring (Apr-Jun)-Cycleways.csv
-2016 Q2 spring (Apr-Jun)-Inner.csv
-2016 Q2 spring (Apr-Jun)-Outer.csv
-2016 Q3 (Jul-Sep)-Central.csv
-2016 Q4 autumn (Oct-Dec)-Central.csv
-2016 Q4 autumn (Oct-Dec)-Cycleways.csv
-2017 Q1 (Jan-Mar)-Central.csv
-2017 Q2 spring (Apr-Jun)-Central.csv
-2017 Q2 spring (Apr-Jun)-Cycleways.csv
-2017 Q2 spring (Apr-Jun)-Inner.csv
-2017 Q2 spring (Apr-Jun)-Outer.csv
-2017 Q3 (Jul-Sep)-Central.csv
-2017 Q4 autumn (Oct-Dec)-Central.csv
-2017 Q4 autumn (Oct-Dec)-Cycleways.csv
-2018 Q1 (Jan-Mar)-Central.csv
-2018 Q2 spring (Apr-Jun)-Central.csv
-2018 Q2 spring (Apr-Jun)-Cycleways.csv
-2018 Q2 spring (Apr-Jun)-Inner.csv
-2018 Q2 spring (Apr-Jun)-Outer.csv
-2018 Q3 (Jul-Sep)-Central.csv
-2018 Q4 autumn (Oct-Dec)-Central.csv
-2018 Q4 autumn (Oct-Dec)-Cycleways.csv
-2019 Q1 (Jan-Mar)-Central.csv
-2019 Q2 spring (Apr-Jun)-Central.csv
-2019 Q2 spring (Apr-Jun)-Cycleways.csv
-2019 Q2 spring (Apr-Jun)-Inner.csv
-2019 Q2 spring (Apr-Jun)-Outer.csv
-2019 Q3 (Jul-Sep)-Central.csv
-2019 Q4 autumn (Oct-Dec)-Central.csv
-2019 Q4 autumn (Oct-Dec)-Cycleways.csv
-2020 Q1 (Jan-Mar)-Central.csv
-2020 Q2 spring (synthetic)-Central.csv
-2020 Q2 spring (synthetic)-Inner.csv
-2020 Q2 spring (synthetic)-Outer.csv
-2020 Q3 (Jul-Sep)-Central.csv
-2020 Q4 autumn (Oct-Dec)-Cycleways.csv
-2020 Q4 autumn (Oct-Dec)-Inner.csv
-2020 Q4 autumn (Oct-Dec)-Outer.csv
-2021 Q2 spring (Apr-Jun)-Central.csv
-2021 Q2 spring (Apr-Jun)-Cycleways.csv
-2021 Q2 spring (Apr-Jun)-Inner.csv
-2021 Q2 spring (Apr-Jun)-Outer.csv
-2021 Q3 (Jul-Sep)-Central.csv
-2021 Q4 autumn (Oct-Dec)-Central.csv
-2021 Q4 autumn (Oct-Dec)-Cycleways.csv
-2022 Q1 (Jan-Mar)-Central.csv
+
+
 

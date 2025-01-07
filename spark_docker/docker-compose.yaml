@@ -1,0 +1,66 @@
+services:
+  spark-master:
+    container_name: spark-master
+    build: .
+    image: spark-image:latest
+    entrypoint: ["./entrypoint.sh", "master"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    volumes:
+      - shared-jars:/opt/spark/jars
+      - spark-logs:/opt/spark/spark-events
+      - ../src:/opt/spark/src
+      - ../data:/opt/spark/external_data
+    env_file:
+      - .env.spark
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+    networks:
+      - data-flow-net
+
+  spark-history-server:
+    container_name: spark-history
+    image: spark-image:latest
+    entrypoint: ["./entrypoint.sh", "history"]
+    depends_on:
+      - spark-master
+    env_file:
+      - .env.spark
+    volumes:
+      - shared-jars:/opt/spark/jars
+      - spark-logs:/opt/spark/spark-events
+      - ../src:/opt/spark/src
+      - ../data:/opt/spark/external_data
+    ports:
+      - "18080:18080"
+    networks:
+      - data-flow-net
+
+  spark-worker:
+    container_name: spark-worker
+    image: spark-image:latest
+    entrypoint: ["./entrypoint.sh", "worker"]
+    depends_on:
+      - spark-master
+    env_file:
+      - .env.spark
+    volumes:
+      - shared-jars:/opt/spark/jars
+      - spark-logs:/opt/spark/spark-events
+      - ../src:/opt/spark/src
+      - ../data:/opt/spark/external_data
+    networks:
+      - data-flow-net
+
+volumes:
+  spark-logs:
+  shared-jars:
+    external: true
+
+networks:
+  data-flow-net:
+    external: true

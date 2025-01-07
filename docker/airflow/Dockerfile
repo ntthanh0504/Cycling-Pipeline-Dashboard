@@ -1,4 +1,4 @@
-FROM apache/airflow:2.7.3
+FROM apache/airflow:2.7.3-python3.10
 
 USER root
 
@@ -12,6 +12,8 @@ RUN apt-get update \
     gnupg2 \
     lsb-release \
     openjdk-11-jdk \
+    unzip \
+    wget \
     && apt-get autoremove -yqq --purge \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -26,9 +28,8 @@ USER airflow
 ARG AIRFLOW_VERSION=2.7.3
 
 # Install Python packages
-RUN pip install py4j
-RUN pip install --no-cache-dir "apache-airflow==${AIRFLOW_VERSION}" unidecode==1.3.7 pyspark==3.4.1 confluent_kafka
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # Verify installations
-RUN python --version
-RUN airflow version
+RUN python --version && airflow version

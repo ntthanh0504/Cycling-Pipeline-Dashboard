@@ -1,11 +1,12 @@
-version: '3'
+version: "3"
 services:
   zookeeper:
     image: bitnami/zookeeper:3.9.1
+    container_name: zookeeper
     # to survive the container restart
     tmpfs: "/zktmp"
     environment:
-      ALLOW_ANONYMOUS_LOGIN: 'yes'
+      ALLOW_ANONYMOUS_LOGIN: "yes"
     ports:
       - "2181:2181"
     networks:
@@ -13,6 +14,7 @@ services:
 
   kafka1:
     image: bitnami/kafka:3.7.0
+    container_name: kafka1
     depends_on:
       - zookeeper
     environment:
@@ -23,8 +25,8 @@ services:
       KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_CFG_INTER_BROKER_LISTENER_NAME: INTERNAL
       # optional - enable topic auto create
-      KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: 'true'
-      ALLOW_PLAINTEXT_LISTENER: 'yes'
+      KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: "true"
+      ALLOW_PLAINTEXT_LISTENER: "yes"
     ports:
       - "9092:9092"
       - "29092:29092"
@@ -35,6 +37,7 @@ services:
 
   kafka2:
     image: bitnami/kafka:3.7.0
+    container_name: kafka2
     depends_on:
       - zookeeper
     environment:
@@ -45,8 +48,8 @@ services:
       KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_CFG_INTER_BROKER_LISTENER_NAME: INTERNAL
       # optional - enable topic auto create
-      KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: 'true'
-      ALLOW_PLAINTEXT_LISTENER: 'yes'
+      KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: "true"
+      ALLOW_PLAINTEXT_LISTENER: "yes"
     ports:
       - "9093:9093"
       - "29093:29093"
@@ -57,6 +60,7 @@ services:
 
   kafka3:
     image: bitnami/kafka:3.7.0
+    container_name: kafka3
     depends_on:
       - zookeeper
     environment:
@@ -67,8 +71,8 @@ services:
       KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_CFG_INTER_BROKER_LISTENER_NAME: INTERNAL
       # optional - enable topic auto create
-      KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: 'true'
-      ALLOW_PLAINTEXT_LISTENER: 'yes'
+      KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: "true"
+      ALLOW_PLAINTEXT_LISTENER: "yes"
     ports:
       - "9094:9094"
       - "29094:29094"
@@ -76,9 +80,10 @@ services:
       - kafka_data3:/bitnami/kafka
     networks:
       - data-flow-net
-      
+
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
     depends_on:
       - kafka1
       - kafka2
@@ -89,17 +94,6 @@ services:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka1:9092,kafka2:9093,kafka3:9094
       KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
-    networks:
-      - data-flow-net
-
-  docker-proxy:
-    image: alpine/socat
-    container_name: docker-proxy
-    command: "TCP4-LISTEN:2375,fork,reuseaddr UNIX-CONNECT:/var/run/docker.sock"
-    ports:
-      - "2375:2375"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - data-flow-net
 
