@@ -7,6 +7,8 @@ This guide provides detailed instructions for setting up a robust data pipeline 
 
 ## Technologies Overview
 
+![Alt Text](docs/images/Data%20Flow%20Tools.png)
+
 Here's a brief overview of the technologies and tools we'll be using to build our data pipeline:
 
 - **Cloud Platform**: Google Cloud Platform (GCP) - A suite of cloud computing services that runs on the same infrastructure that Google uses internally for its end-user products.
